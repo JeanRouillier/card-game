@@ -15,6 +15,7 @@ public class EnemiesBoard extends Board {
 
     public void placeEnemies(List<Enemy> enemies) {
         for (Enemy e: enemies){
+            log.warning(print());
             //si place pas dispo on offset jusqu'à dispo
             boolean isOccupied = isOccupied(e.getPosition());
             while(!setAtPosition(e.getPosition(), e)){

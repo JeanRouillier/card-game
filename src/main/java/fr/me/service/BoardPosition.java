@@ -15,16 +15,7 @@ public class BoardPosition {
     private int y;
 
     public BoardPosition offsetSameRow(){
-        //as only 3 slots are available
-        switch(x){
-            case 0:
-            case 1:
-                y ++;
-                break;
-            case 2:
-                y --;
-                break;
-        }
+        y = y + 1 % 3;
         return this;
     }
 }

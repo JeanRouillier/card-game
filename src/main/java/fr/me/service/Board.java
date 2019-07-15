@@ -3,10 +3,8 @@ package fr.me.service;
 import fr.me.dto.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Data
@@ -46,5 +44,11 @@ public class Board {
             board[position.getX()][position.getY()] = person;
             return true;
         }
+    }
+
+    public String print() {
+        return "\n" +
+                Arrays.toString(board[0]) + " \n "
+                + Arrays.toString(board[1]);
     }
 }
