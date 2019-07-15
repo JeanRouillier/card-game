@@ -1,9 +1,10 @@
 package fr.me.dto.ennemy;
 
+import fr.me.dto.behaviour.Attacker;
 import fr.me.dto.misc.AttackTypeEnum;
 import fr.me.dto.misc.ConditionEnum;
 import fr.me.dto.Person;
-import fr.me.service.BoardPosition;
+import fr.me.dto.board.BoardPosition;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

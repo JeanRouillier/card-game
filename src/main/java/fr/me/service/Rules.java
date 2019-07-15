@@ -1,8 +1,8 @@
 package fr.me.service;
 
 import fr.me.dto.AlliesBoard;
+import fr.me.dto.board.BoardPosition;
 import fr.me.dto.encounter.Encounter;
-import fr.me.dto.ennemy.Enemy;
 import fr.me.dto.player.Player;
 
 import java.util.List;
@@ -35,5 +35,6 @@ public class Rules {
         if(b){
             System.out.println("Player placed: "+player.getName());
         }
+        alliesBoard.print();
     }
 }

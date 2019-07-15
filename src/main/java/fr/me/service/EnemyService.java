@@ -1,14 +1,20 @@
 package fr.me.service;
 
+import fr.me.dto.AlliesBoard;
+import fr.me.dto.Person;
+import fr.me.dto.board.BoardPosition;
 import fr.me.dto.encounter.EncounterRow;
 import fr.me.dto.ennemy.Enemy;
+import fr.me.dto.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static fr.me.dto.misc.AttackTypeEnum.HEAVY;
 import static fr.me.dto.misc.AttackTypeEnum.MAGICAL;
 import static fr.me.dto.misc.ConditionEnum.FROST;
 
@@ -25,7 +31,7 @@ public class EnemyService {
 
     private static List<Enemy> initLevelOneEnemyList(){
         Enemy irithyllianBeastHound = new Enemy()
-                .withName("irithyllianBeastHound-1")
+                .withName("irithyllianBeastHound")
                 .withLevel(1)
                 .withSouls(1)
                 .withArmor(1)
@@ -38,25 +44,35 @@ public class EnemyService {
                         .collect(Collectors.toList()))
                 .withPosition(new BoardPosition(0, 2));
 
-        Enemy irithyllianBeastHound2 = new Enemy()
-                .withName("irithyllianBeastHound-2")
+        Enemy hollowManservant = new Enemy()
+                .withName("hollowManservant")
                 .withLevel(1)
-                .withSouls(1)
-                .withArmor(1)
-                .withHp(1)
-                .withSensibility(MAGICAL)
-                .withAttack(2)
-                .withAttackType(FROST)
+                .withSouls(2)
+                .withArmor(0)
+                .withHp(2)
+                .withAttack(4)
                 .withAttackTarget(Stream.of(
-                        new BoardPosition(1,0 ))
+                        new BoardPosition(0,2 ))
                         .collect(Collectors.toList()))
-                .withPosition(new BoardPosition(0, 2));
+                .withPosition(new BoardPosition(0, 0));
+
+        Enemy flambergeHollowSlave = new Enemy()
+                .withName("flambergeHollowSlave")
+                .withLevel(1)
+                .withSouls(3)
+                .withArmor(2)
+                .withHp(1)
+                .withSensibility(HEAVY)
+                .withAttack(2)
+                .withAttackTarget(Stream.of(
+                        new BoardPosition(0,1 ))
+                        .collect(Collectors.toList()))
+                .withPosition(new BoardPosition(0, 1));
 
         return Stream.of(
                 irithyllianBeastHound,
-                irithyllianBeastHound2,
-                //TODO to remove
-                irithyllianBeastHound
+                hollowManservant,
+                flambergeHollowSlave
         ).collect(Collectors.toList());
     }
 
@@ -113,5 +129,19 @@ public class EnemyService {
             }
         }
         return result;
+    }
+
+    public static void enemyAttack(List<Enemy> enemyList, AlliesBoard alliesBoard){
+        alliesBoard.print();
+        for (Enemy e : enemyList) {
+            System.out.println(e.getName() + " attacks => "+e.getAttackTarget());
+            if(!e.isAreaAttack()){
+                alliesBoard.getAtPosition(e.getAttackTarget().get(0))
+                        .ifPresent(p -> ((Player)p).defend(e.getAttack()));
+                }else{
+
+            }
+        }
+
     }
 }

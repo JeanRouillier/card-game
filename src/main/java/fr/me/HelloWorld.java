@@ -7,7 +7,7 @@ import fr.me.dto.encounter.EncounterRow;
 import fr.me.dto.ennemy.Enemy;
 import fr.me.service.EncounterService;
 import fr.me.dto.player.Player;
-import fr.me.service.BoardPosition;
+import fr.me.dto.board.BoardPosition;
 import fr.me.service.EnemyService;
 import fr.me.service.Round;
 import fr.me.service.Rules;
@@ -162,15 +162,22 @@ public class HelloWorld {
             glfwPollEvents();
 
             if(!currentRound.getHasActiveEncounter()){
+                //PICK ENCOUNTER
                 Encounter encounter = Rules.selectEncounter(encounterList, 1);
                 currentRound.setActiveEncounter(encounter);
                 System.out.println("Encounter name: "+encounter.getName());
                 System.out.println("Encounter detail: "+encounter.getDetail());
+
+                //PLACE PLAYERS
                 Rules.placePlayers(alliesBoard, wizard, new BoardPosition(1, 0));
+
+                //PLACE ENEMIES
                 Map<Integer, EncounterRow> detail = encounter.getDetail();
                 List<Enemy> enemies = EnemyService.pickEnemies(detail.get(1));
                 enemiesBoard.placeEnemies(enemies);
 
+                //ENEMY ATTACK
+                EnemyService.enemyAttack(enemies, alliesBoard);
             }
         }
     }
