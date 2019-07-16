@@ -1,7 +1,6 @@
 package fr.me.service;
 
 import fr.me.dto.AlliesBoard;
-import fr.me.dto.Person;
 import fr.me.dto.board.BoardPosition;
 import fr.me.dto.encounter.EncounterRow;
 import fr.me.dto.ennemy.Enemy;
@@ -9,7 +8,6 @@ import fr.me.dto.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
