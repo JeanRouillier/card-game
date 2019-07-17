@@ -12,7 +12,8 @@ public class Round {
 
     private Encounter activeEncounter;
 
-    public boolean hasActiveEncounter = false;
+    private boolean hasActiveEncounter = false;
+    private boolean isEnded = false;
 
     public boolean getHasActiveEncounter(){
         return activeEncounter != null;

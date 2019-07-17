@@ -18,7 +18,7 @@ public class Player extends Person{
     public List<Object> deck = new ArrayList<>();
 
     public void defend(int hitValue){
-        System.out.println("Position attacked "+position);
-        System.out.println("ATTACKED ! hit point "+hitValue);
+        System.out.println("Position attacked " + position);
+        System.out.println("ATTACKED ! hit point " + hitValue);
     }
 }

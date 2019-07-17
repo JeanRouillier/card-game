@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 import static fr.me.dto.misc.AttackTypeEnum.HEAVY;
 import static fr.me.dto.misc.AttackTypeEnum.MAGICAL;
 import static fr.me.dto.misc.ConditionEnum.FROST;
+import static java.lang.System.out;
 
 public class EnemyService {
 
@@ -132,10 +133,15 @@ public class EnemyService {
     public static void enemyAttack(List<Enemy> enemyList, AlliesBoard alliesBoard){
         alliesBoard.print();
         for (Enemy e : enemyList) {
-            System.out.println(e.getName() + " attacks => "+e.getAttackTarget());
+            out.println("ATTACKER : " + e.getName() + " attacks => "+e.getAttackTarget());
             if(!e.isAreaAttack()){
                 alliesBoard.getAtPosition(e.getAttackTarget().get(0))
-                        .ifPresent(p -> ((Player)p).defend(e.getAttack()));
+                        .ifPresent(p -> {
+                            Player attackedPlayer = ((Player)p);
+                            out.println("DEFENDER "+attackedPlayer.getName());
+                            attackedPlayer.defend(e.getAttack());
+
+                        });
                 }else{
 
             }
